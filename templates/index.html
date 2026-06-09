@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SentinelShield</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>SentinelShield</h1>
+    <h2>Advanced Intrusion Detection & Web Protection System</h2>
+
+    <form method="POST">
+
+        <textarea
+            name="request_data"
+            rows="6"
+            cols="60"
+            placeholder="Enter Request Here">
+        </textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Analyze Request
+        </button>
+
+    </form>
+
+   <div>
+    {{ result | safe }}
+</div>
+
+    <hr>
+ <div class="dashboard"></div>
+    <h2>Dashboard</h2>
+    <hr>
+    <p>Command Injection Attacks: {{ command_count }}</p>
+    <p>LFI Attacks: {{ lfi_count }}</p>
+
+<p><b>Total Attacks: {{ total_attacks }}</b></p>
+<p><b>Most Common Attack:</b> {{ most_common_attack }}</p>
+
+<h2>Recent Attack Logs</h2>
+
+<ul>
+    {% for log in recent_logs %}
+        <li>{{ log }}</li>
+    {% endfor %}
+</ul>
+
+
+    <p>SQL Injection Attacks: {{ sql_count }}</p>
+
+    <p>XSS Attacks: {{ xss_count }}</p>
+
+    <p>Directory Traversal Attacks: {{ dir_count }}</p>
+    <p>Brute Force Attacks: {{ brute_force_count }}</p>
+
+</body>
+</html>
